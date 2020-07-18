@@ -24,7 +24,7 @@ router.get('/logout', (req, res) => {
 })
 
 // Callback route for google to redirect to
-router.get('/google/callback', (req, res) => {
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   res.json({
     ...req.query
   })
