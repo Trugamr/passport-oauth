@@ -1,6 +1,9 @@
 // Setting environment variables
 require('dotenv').config()
 
+// Passport setup
+require('./config/passport-setup')
+
 const express = require('express')
 const authRoutes = require('./routes/auth-routes')
 
