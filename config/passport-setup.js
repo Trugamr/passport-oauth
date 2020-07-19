@@ -30,7 +30,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       // Passport callback function
-      const { id, displayName } = profile
+      const { id, displayName, _json } = profile
 
       User.findOne({ googleId: id }).then(currentUser => {
         if (currentUser) {
@@ -38,10 +38,12 @@ passport.use(
           console.log('USER ALREADY EXITS', currentUser)
           done(null, currentUser)
         } else {
+          console.log(profile)
           // Creating user in db
           const user = new User({
             username: displayName,
-            googleId: id
+            googleId: id,
+            thumbnail: _json.picture
           })
 
           user
