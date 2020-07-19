@@ -5,7 +5,7 @@ const router = express.Router()
 
 // Auth login
 router.get('/login', (req, res) => {
-  res.render('login')
+  res.render('login', { user: req.user })
 })
 
 // Auth with google
@@ -18,9 +18,8 @@ router.get(
 
 // Auth logout
 router.get('/logout', (req, res) => {
-  res.json({
-    logout: 'handle with passport'
-  })
+  req.logout()
+  res.redirect('/')
 })
 
 // Callback route for google to redirect to
